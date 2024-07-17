@@ -37,4 +37,14 @@ router.put('/:_id', async (req, res) => {
     res.status(500).json({ error: "Can't connect to Server" });
   }
 })
+
+router.delete('/:_id', async (req, res) => {
+  const {_id} = req.params;
+  try {
+    await student.findByIdAndDelete(_id);
+    res.redirect('/')
+  } catch (error) {
+    console.log(error);
+  }
+})
 module.exports = router;
